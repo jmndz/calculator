@@ -1,0 +1,52 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Virtucorp';
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 450px 50px 450px;
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(40, 161, 149);
+    border: 10px solid black;
+    border-radius: 20px;
+    height: 500px;
+    width: 300px;
+}
+
+.display {
+    flex: .3;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 20px;
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.buttons {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 20px;
+}
+
+button {
+    padding: 10px;
+    font-size: 20px;
+    font-family: 'Virtucorp';
+    cursor: pointer;
+}
