@@ -4,6 +4,7 @@ let storedInput = document.querySelector('.input-1');
 let currentInput = document.querySelector('.input-2');
 storedInput.textContent = '';
 currentInput.textContent = "0";
+let equal = false;
 let result = 0;
 let op = false;
 let tempInput = 0;
@@ -14,8 +15,7 @@ calcButton.forEach(button => button.addEventListener('click',function(){
 
 function operate(btn){
     if(btn.textContent === "."){
-        console.log(currentInput.textContent.indexOf('.') !== -1);
-        if(currentInput.textContent.indexOf('.') === -1) currentInput.textContent += btn.textContent;
+        if(currentInput.textContent.indexOf('.') === -1 && op === false) currentInput.textContent += btn.textContent;
         else return;
     }
     if(btn.textContent === "0" || btn.textContent === "1" || btn.textContent === "2" || btn.textContent === "3" ||
@@ -39,16 +39,18 @@ function operate(btn){
         if((currentInput.textContent).length > 1) currentInput.textContent = 
             (currentInput.textContent).slice(0,(currentInput.textContent).length-1);
         else currentInput.textContent = "0";
-    }else if(btn.textContent === "+" || btn.textContent === "-" || btn.textContent === "*" || btn.textContent === "/"){
+    }else if(btn.textContent === "+" || btn.textContent === "-" || btn.textContent === "*" || 
+        btn.textContent === "/" || btn.textContent === "="){
+        if(equal === true){
+            storedInput.textContent = `${result} ${btn.textContent}`;
+            equal = false;
+            return;
+        }
         if(op === true){
             storedInput.textContent = `${(storedInput.textContent).slice(0,(storedInput.textContent).length-2)} ${btn.textContent}`;
             return;
         }
         operator(btn);
-    }else if(btn.textContent === "="){
-        if(storedInput.textContent === "" || (op === true)) return;
-        operator(btn);
-        op = false;
     }
     
 }
@@ -60,7 +62,6 @@ function operator(btn){
     }else{
         tempInput = (storedInput.textContent).slice(0,(storedInput.textContent).length-2);
         tempOperator = (storedInput.textContent).slice((storedInput.textContent).length-1);
-        console.log(`${tempInput} ${tempOperator} ${currentInput.textContent}`);
         if(tempOperator === "+"){
             result = addition(parseInt(tempInput), parseInt(currentInput.textContent));
         }else if(tempOperator === "-"){
@@ -73,19 +74,22 @@ function operator(btn){
                 return;
             } 
             else result = division(tempInput, currentInput.textContent);
+        }else if(tempOperator === "="){
+            op = false;
+            return;
         }
         console.log(toString(result).indexOf('.') !== -1);
         if(toString(result).includes('.') !== -1) result = Math.round(result * 10000)/10000;
         if(btn.textContent === "="){
             storedInput.textContent = `${storedInput.textContent} ${currentInput.textContent} ${btn.textContent}`;
             currentInput.textContent = result;
+            equal = true;
             return;
         }
         storedInput.textContent = `${result} ${btn.textContent}`;
         currentInput.textContent = result;
     }
 }
-
 
 function pressNum(e){
     const btn = document.querySelector(`button[data-key="${e.keyCode}"]`);
