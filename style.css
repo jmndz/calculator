@@ -10,11 +10,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 50px 450px 50px 450px;
 }
 
 .container {
-    flex: 1;
     display: flex;
     flex-direction: column;
     background-color: rgb(40, 161, 149);
@@ -22,18 +20,36 @@ body {
     border-radius: 20px;
     height: 500px;
     width: 300px;
+    margin-top: 30px;
 }
 
 .display {
-    flex: .3;
+    height: 120px;
+    flex: .15;
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    padding: 20px;
+    flex-direction: column;
+    padding: 10px;
     border: 1px solid black;
     background-color: white;
     border-radius: 10px;
     margin: 10px;
+    font-size: 36px;
+}
+
+.input-1,
+.input-2 {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.input-1 {
+    font-size: 32px;
+    flex: 0.7;
+}
+
+.input-2 {
+    flex: 1;
 }
 
 .buttons {
