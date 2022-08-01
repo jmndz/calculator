@@ -4,18 +4,45 @@ let storedInput = document.querySelector('.input-1');
 let currentInput = document.querySelector('.input-2');
 storedInput.textContent = '';
 currentInput.textContent = "0";
+let result = 0;
+let op = false;
 calcButton.forEach(button => button.addEventListener('click',function(){
     clickNum(button);
 }));
 
 function clickNum(btn){
-    if(currentInput.textContent === "0"){
-        currentInput.textContent = btn.textContent;
-    }else{
-        if(btn.textContent == 0 || btn.textContent == 1 || btn.textContent == 2 || btn.textContent == 3 ||
-            btn.textContent == 4 || btn.textContent == 5 || btn.textContent == 6 || btn.textContent == 7 ||
-            btn.textContent == 8 || btn.textContent == 9){
-                currentInput.textContent += btn.textContent;
+    if((currentInput.textContent).length === 9) return;
+    if(btn.textContent === "0" || btn.textContent === "1" || btn.textContent === "2" || btn.textContent === "3" ||
+        btn.textContent === "4" || btn.textContent === "5" || btn.textContent === "6" || btn.textContent === "7" ||
+        btn.textContent === "8" || btn.textContent === "9"){
+            if(currentInput.textContent === "0"){
+                currentInput.textContent = btn.textContent; 
+            } 
+            else {
+                if(op === true){
+                    currentInput.textContent = btn.textContent; 
+                    op = false;
+                }else{
+                    currentInput.textContent += btn.textContent;
+                }
+            }
+    }else if(btn.textContent === "clear"){
+        currentInput.textContent = "0";
+        storedInput.textContent = "";
+    }else if(btn.textContent === "del"){
+        if((currentInput.textContent).length > 1) currentInput.textContent = 
+            (currentInput.textContent).slice(0,(currentInput.textContent).length-1);
+        else currentInput.textContent = "0";
+    }else if(btn.textContent === "+"){
+        if(op === true) return;
+        op = true;
+        if(storedInput.textContent === ""){
+            storedInput.textContent = `${currentInput.textContent} +`;
+        }else{
+            let tempInput = (storedInput.textContent).slice(0,(storedInput.textContent).length-2);
+            result = addition(parseInt(tempInput), parseInt(currentInput.textContent));
+            storedInput.textContent = `${result} +`;
+            currentInput.textContent = result;
         }
     }
     
@@ -26,18 +53,8 @@ function pressNum(e){
     if(!btn){
         return;
     }else{
-        if(currentInput.textContent === "0"){
-            currentInput.textContent = btn.textContent;
-            console.log(currentInput.textContent+ " " +btn.textContent);
-        }else{
-            if(btn.textContent == 0 || btn.textContent == 1 || btn.textContent == 2 || btn.textContent == 3 ||
-                btn.textContent == 4 || btn.textContent == 5 || btn.textContent == 6 || btn.textContent == 7 ||
-                btn.textContent == 8 || btn.textContent == 9){
-                    currentInput.textContent += btn.textContent;
-            }
-        }
+        clickNum(btn);
     }
-    
 }
 
 function operate(){
