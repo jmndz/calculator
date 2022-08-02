@@ -39,8 +39,8 @@ function operate(btn){
         if((currentInput.textContent).length > 1) currentInput.textContent = 
             (currentInput.textContent).slice(0,(currentInput.textContent).length-1);
         else currentInput.textContent = "0";
-    }else if(btn.textContent === "+" || btn.textContent === "-" || btn.textContent === "*" || 
-        btn.textContent === "/" || btn.textContent === "="){
+    }else if(btn.textContent === "+" || btn.textContent === "-" || btn.textContent === "x" || 
+        btn.textContent === "÷" || btn.textContent === "="){
         if(equal === true){
             storedInput.textContent = `${result} ${btn.textContent}`;
             equal = false;
@@ -66,9 +66,9 @@ function operator(btn){
             result = addition(parseInt(tempInput), parseInt(currentInput.textContent));
         }else if(tempOperator === "-"){
             result = subtraction(tempInput, currentInput.textContent);
-        }else if(tempOperator === "*"){
+        }else if(tempOperator === "x"){
             result = multiplication(tempInput, currentInput.textContent);
-        }else if(tempOperator === "/"){
+        }else if(tempOperator === "÷"){
             if(currentInput.textContent === "0"){
                 alert("You cannot divide by 0!");
                 return;
