@@ -39,6 +39,7 @@ function operate(btn){
         tempOperator = "";
         op = false;
         equal = false;
+        result = 0;
     }else if(btn.textContent === "del"){
         if((currentInput.textContent).length > 1) currentInput.textContent = 
             (currentInput.textContent).slice(0,(currentInput.textContent).length-1);
