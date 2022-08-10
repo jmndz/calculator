@@ -70,6 +70,13 @@ body {
 
 .calc-btn {
     flex: 1;
+    background-color: rgb(207, 199, 199);
+    transition: transform(2s);
+}
+
+.calc-btn:hover {
+    background-color: rgb(241, 238, 238);
+    transform: scale(1.02);
 }
 
 .first-row,
@@ -84,6 +91,11 @@ body {
 
 .first-row button {
     background-color: rgb(255, 94, 0);
+}
+
+.first-row button:hover {
+    background-color: rgb(255, 94, 0);
+    color: wheat;
 }
 
 button {
